@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Photo Gallery</title>
+    <style>
+        #largeImage {
+            width: 400px;
+            height: 300px;
+            background-color: #f0f0f0;
+        }
+        .thumbnail {
+            width: 100px;
+            height: 75px;
+            margin: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Photo Gallery</h1>
+
+    <div id="largeImage"></div>
+
+    <div>
+        <img src="image1.jpg" alt="Description 1" class="thumbnail" tabindex="0">
+        <img src="image2.jpg" alt="Description 2" class="thumbnail" tabindex="0">
+        <img src="image3.jpg" alt="Description 3" class="thumbnail" tabindex="0">
+        <img src="image4.jpg" alt="Description 4" class="thumbnail" tabindex="0">
+        <img src="image5.jpg" alt="Description 5" class="thumbnail" tabindex="0">
+        <img src="image6.jpg" alt="Description 6" class="thumbnail" tabindex="0">
+    </div>
+
+    <script>
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const largeImage = document.getElementById('largeImage');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('mouseover', () => {
+                largeImage.style.backgroundImage = `url(${thumbnail.src})`;
+                largeImage.innerText = thumbnail.alt;
+            });
+
+            thumbnail.addEventListener('mouseleave', () => {
+                largeImage.style.backgroundImage = '';
+                largeImage.innerText = 'Hover over an image';
+            });
+
+            thumbnail.addEventListener('focus', () => {
+                largeImage.style.backgroundImage = `url(${thumbnail.src})`;
+                largeImage.innerText = thumbnail.alt;
+            });
+
+            thumbnail.addEventListener('blur', () => {
+                largeImage.style.backgroundImage = '';
+                largeImage.innerText = 'Focus on an image';
+            });
+        });
+    </script>
+</body>
+</html>
